@@ -1,3 +1,6 @@
+from pyparsing import stringStart
+
+
 medalResults = [
     {
         "sport": "cycling",
@@ -18,10 +21,18 @@ medalResults = [
 ]
 
 def createMedalTable(results):
-    medalTable = {}
-    for result in results:
-        if result['sport'] == 'high jump':
-            medalTable['Countries'] = result['podium']
+
+1. create a medalTable Dictionary
+2. for each result in results, loop through the podium list
+3. for each country & position string in the podium list, save the position and country name as seprate variables
+4. if the country already exists in medal table add the correct number of points to that countries key, e.g 3 points for 1st, 2 points for 2nd, 1 point for 3rd
+5. if the country does not exist in medal table add the country name as a key and then add the correct number of points to the medal table
+6. return medal table
+
+    # medalTable = {}
+    # for result in results:
+    #     if result['sport'] == 'high jump':
+    #         medalTable['Countries'] = result['podium']
         
     # Use the results object above to create a medal table
     # The winner gets 3 points, second place 2 points and third place 1 point
