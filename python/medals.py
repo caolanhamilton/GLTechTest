@@ -20,7 +20,8 @@ medalResults = [
 def createMedalTable(results):
     medalTable = {}
     for result in results:
-        medalTable['Countries'] = result['podium']
+        if result['sport'] == 'high jump':
+            medalTable['Countries'] = result['podium']
         
     # Use the results object above to create a medal table
     # The winner gets 3 points, second place 2 points and third place 1 point
