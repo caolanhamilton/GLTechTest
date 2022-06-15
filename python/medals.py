@@ -21,27 +21,18 @@ medalResults = [
 ]
 
 def createMedalTable(results):
-    medalTable = {} # 1. create a medalTable Dictionary
-    for result in results: # 2. for each result in results, loop through the podium list
-        for country in result['podium']: # 3. for each country & position string in the podium list
+    medalTable = {} # 1. Create a medalTable dictionary
+    for result in results: # 2. For each result in results, loop through the podium list
+        for country in result['podium']: # 3. For each country & position string in the podium list
             countryName = country[2:] # save the country name and position in variables
             countryPlace = country[0:1]
-            if countryName in medalTable: # 4. if the country already exists in medal table
-                if countryPlace == '1': # add the correct number of points to that countries key
-                    medalTable[countryName] += 3
-                elif countryPlace == '2':
-                    medalTable[countryName] += 2
-                elif countryPlace == '3':
-                    medalTable[countryName] += 1
-            else: # 5. if the country does not exist in medal table add the country name as a key and then add the correct number of points to the medal table
-                if countryPlace == '1':
-                    medalTable[countryName] = 3
-                elif countryPlace == '2':
-                    medalTable[countryName] = 2
-                elif countryPlace == '3':
-                    medalTable[countryName] = 1
-
-    return medalTable # 6. return medal table
+            if countryPlace == '1':  # 4. Check the country position and add the correct number of points to that countries key e.g 3 points for 1st, 2 points for 2nd, 1 point for 3rd.
+                medalTable[countryName] = medalTable.get(countryName, 0) + 3  # get method checks the medalTable to see if countryName is a key, if it is it return the value, else it returns 0 allowing us to add correct points to that country key even if it is not yet in the medalTable
+            elif countryPlace == '2':
+                medalTable[countryName] = medalTable.get(countryName, 0) + 2  
+            elif countryPlace == '3':
+                medalTable[countryName] = medalTable.get(countryName, 0) + 1 
+    return medalTable # 5. Return medal table
 
 # print(createMedalTable(medalResults))
 
@@ -49,9 +40,9 @@ def test_function():
     #This it the test function, please don't change me
     medalTable = createMedalTable(medalResults)
     expectedTable = {
-        "Italy": 4,
+        "Italy": 4, 
         "France": 4,
-        "ROC": 4,
+        "ROC": 4, 
         "USA": 3,
         "Qatar": 3,
         "China": 3,
